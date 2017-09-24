@@ -14,11 +14,23 @@
   color: white;
 }
 
-.App-intro {
-  font-size: large;
-}
-
 @keyframes App-logo-spin {
   from { transform: rotate(0deg); }
   to { transform: rotate(360deg); }
+}
+
+.Todo-list-container {
+  padding: auto auto;
+  display: flex;
+  justify-content: center;
+  background-color: #222;
+}
+
+input {
+  width: 500px;
+}
+
+input, button {
+  font-size: 16px;
+  margin: 5px 5px;
 }
