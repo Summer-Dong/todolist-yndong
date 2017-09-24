@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import logo from '../logo.svg';
 import '../css/App.css';
 import AddTodo from "./addTodo";
+import TodoList from "./todoList";
 
 class App extends Component {
   render() {
@@ -13,7 +14,7 @@ class App extends Component {
         </div>
         <div className="Todo-list-container">
           <AddTodo/>
-
+          <TodoList/>
         </div>
       </div>
     );
