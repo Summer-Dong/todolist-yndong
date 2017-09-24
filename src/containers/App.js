@@ -3,6 +3,7 @@ import logo from '../logo.svg';
 import '../css/App.css';
 import AddTodo from "./addTodo";
 import TodoList from "./todoList";
+import Footer from "./footer";
 
 class App extends Component {
   render() {
@@ -15,6 +16,7 @@ class App extends Component {
         <div className="Todo-list-container">
           <AddTodo/>
           <TodoList/>
+          <Footer/>
         </div>
       </div>
     );

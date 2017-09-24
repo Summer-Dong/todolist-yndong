@@ -5,7 +5,7 @@ class AddTodo extends React.Component {
     return (
       <div>
         <input placeholder="Please input your todo here."/>
-        <button>Add Todo</button>
+        <button>ADD TODO</button>
       </div>
     );
   }
