@@ -1,8 +1,8 @@
 import * as React from "react";
 
-const Todo = () => {
+const Todo = ({text}) => {
   return (
-    <li/>
+    <li>{text}</li>
   );
 }
 

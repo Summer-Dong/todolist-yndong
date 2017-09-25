@@ -1,5 +1,5 @@
 const todoApp = (state=[], action) => {
-  if(action.type=="ADD_TODO"){
+  if(action.type==="ADD_TODO"){
     return [
       ...state,
       {

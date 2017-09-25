@@ -3,9 +3,9 @@ import * as React from "react";
 const Footer = () => {
   return (
     <div>
-      <button>SHOW ALL</button>
-      <button>SHOW COMPLETED</button>
-      <button>SHOW UNCOMPLETED</button>
+      <button disabled>SHOW ALL</button>
+      <button disabled>SHOW COMPLETED</button>
+      <button disabled>SHOW UNCOMPLETED</button>
     </div>
   );
 }

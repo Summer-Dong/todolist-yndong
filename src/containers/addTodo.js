@@ -10,7 +10,7 @@ let AddTodo = ({dispatch}) => {
       <button
         onClick={
           ()=>{
-            !input.value.trim() || dispatch(addTodo(input.value));
+            input.value.trim() && dispatch(addTodo(input.value));
             input.value='';
           }
         }
