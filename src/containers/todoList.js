@@ -17,7 +17,8 @@ class TodoList extends Component {
 TodoList.PropTypes = {
   todos: PropTypes.arrayOf(PropTypes.shape({
       id: PropTypes.number.isRequired,
-      text: PropTypes.string.isRequired
+      text: PropTypes.string.isRequired,
+      isCompleted: PropTypes.bool.isRequired
     }).isRequired
   ).isRequired
 }
