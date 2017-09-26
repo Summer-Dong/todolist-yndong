@@ -1,6 +1,6 @@
 import React from 'react';
 import logo from '../logo.svg';
-import '../css/App.css';
+import '../css/app.css';
 import AddTodo from "./addTodo";
 import TodoList from "./todoList";
 import Footer from "./footer";
