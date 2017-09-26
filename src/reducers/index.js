@@ -1,6 +1,6 @@
 const todoApp = (state=[], action) => {
   if(action.type==="ADD_TODO"){
-    let newState=[
+    return [
       ...state,
       {
         id: action.id,
@@ -8,8 +8,6 @@ const todoApp = (state=[], action) => {
         isCompleted: false
       }
     ]
-    console.log(newState)
-    return newState
   }else if(action.type==="DELETE_TODOS"){
     return []
   }
