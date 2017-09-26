@@ -5,14 +5,14 @@ import {deleteTodos} from "../actions/index";
 let Footer=({dispatch})=> {
     return (
       <div>
-        <button disabled>SHOW ALL</button>
+        <button disabled>show allL</button>
         <button
           onClick={()=>dispatch(deleteTodos())}
         >
-            DELETE ALL
+            delete all
         </button>
-        <button disabled>SHOW COMPLETED</button>
-        <button disabled>SHOW UNCOMPLETED</button>
+        <button disabled>show completed</button>
+        <button disabled>show uncompleted</button>
       </div>
     )
 }

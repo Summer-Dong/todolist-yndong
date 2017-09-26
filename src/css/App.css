@@ -44,6 +44,10 @@ ul {
     color: #eee;
 }
 
-li{
+li {
     text-align: left;
+}
+
+button {
+    text-transform: uppercase;
 }
