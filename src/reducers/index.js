@@ -7,6 +7,8 @@ const todoApp = (state=[], action) => {
         text: action.text
       }
     ]
+  }else if(action.type==="DELETE_TODOS"){
+    return []
   }
 }
 
