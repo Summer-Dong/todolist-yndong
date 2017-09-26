@@ -3,7 +3,7 @@ import logo from '../logo.svg';
 import '../css/app.css';
 import AddTodo from "./addTodo";
 import TodoList from "./todoList";
-import Footer from "./footer";
+import Buttons from "./buttons";
 
 const App = () => {
   return (
@@ -15,7 +15,7 @@ const App = () => {
       <div className="Todo-list-container">
         <AddTodo/>
         <TodoList/>
-        <Footer/>
+        <Buttons/>
       </div>
     </div>
   );

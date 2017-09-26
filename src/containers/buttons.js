@@ -2,7 +2,7 @@ import * as React from "react";
 import connect from "react-redux/es/connect/connect";
 import {deleteTodos} from "../actions/index";
 
-let Footer=({dispatch})=> {
+let Buttons=({dispatch})=> {
     return (
       <div>
         <button disabled>show allL</button>
@@ -17,6 +17,6 @@ let Footer=({dispatch})=> {
     )
 }
 
-Footer=connect()(Footer);
+Buttons=connect()(Buttons);
 
-export default (Footer);
+export default (Buttons);
