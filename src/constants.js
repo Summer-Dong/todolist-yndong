@@ -1,2 +1,4 @@
-export const ADD_TODO = "ADD_TODO";
-export const DELETE_TODOS = "DELETE_TODOS";
+const ADD_TODO = "ADD_TODO";
+const DELETE_TODOS = "DELETE_TODOS";
+
+export {ADD_TODO, DELETE_TODOS};
