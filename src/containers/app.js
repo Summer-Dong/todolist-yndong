@@ -4,6 +4,7 @@ import '../css/app.css';
 import AddTodo from "./addTodo";
 import TodoList from "./todoList";
 import Buttons from "./buttons";
+import Import from "../components/import";
 
 const App = () => {
   return (
@@ -16,6 +17,7 @@ const App = () => {
         <AddTodo/>
         <TodoList/>
         <Buttons/>
+        <Import/>
       </div>
     </div>
   );
