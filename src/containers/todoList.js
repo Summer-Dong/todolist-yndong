@@ -24,7 +24,7 @@ TodoList.PropTypes = {
 }
 
 TodoList.defaultProps = {
-  todos: []
+  todos: JSON.parse(localStorage.getItem('state')) || []
 }
 
 const mapStateToProps = (state) => {
