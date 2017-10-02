@@ -4,17 +4,14 @@ import {addTodo} from "../actions/index";
 
 let AddTodo = ({dispatch}) => {
   let input;
+  let handleAddTodo=()=>{
+    input.value.trim() && dispatch(addTodo(input.value));
+    input.value='';
+  };
   return (
     <div>
       <input placeholder="Please input your todo here." ref={node=>{input=node}}/>
-      <button
-        onClick={
-          ()=>{
-            input.value.trim() && dispatch(addTodo(input.value));
-            input.value='';
-          }
-        }
-      >
+      <button onClick = {handleAddTodo}>
         ADD TODO
       </button>
     </div>
