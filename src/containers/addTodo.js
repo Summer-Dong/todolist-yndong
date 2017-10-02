@@ -9,12 +9,12 @@ let AddTodo = ({dispatch}) => {
     input.value='';
   };
   return (
-    <div>
+    <form onSubmit = {handleAddTodo}>
       <input placeholder="Please input your todo here." ref={node=>{input=node}}/>
-      <button onClick = {handleAddTodo}>
+      <button type='submit'>
         ADD TODO
       </button>
-    </div>
+    </form>
   );
 }
 
