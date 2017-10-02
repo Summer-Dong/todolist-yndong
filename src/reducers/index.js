@@ -4,7 +4,6 @@ const todoApp = (state = localState, action) => {
   switch (action.type) {
 
     case "ADD_TODO":
-      console.log(action)
       const newStateAfterAddOne = [
         ...state,
         {
