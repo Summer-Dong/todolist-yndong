@@ -1,0 +1,29 @@
+
+.Todo-list-container {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    background-color: #222;
+}
+
+input, ul {
+    width: 500px;
+}
+
+input, button {
+    font-size: 16px;
+    margin: 5px 5px;
+}
+
+ul {
+    margin: auto;
+    color: #eee;
+}
+
+li {
+    text-align: left;
+}
+
+button {
+    text-transform: uppercase;
+}
