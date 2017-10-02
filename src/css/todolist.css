@@ -20,10 +20,19 @@ ul {
     color: #eee;
 }
 
+ul div {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+}
+
 li {
+    width: 400px;
     text-align: left;
 }
 
 button {
     text-transform: uppercase;
+    height:30px;
 }

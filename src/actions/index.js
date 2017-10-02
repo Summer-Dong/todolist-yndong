@@ -1,4 +1,4 @@
-import {ADD_TODO, DELETE_TODOS} from "../constants";
+import {ADD_TODO, DELETE_TODOS, COMPLETE_TODO} from "../constants";
 
 const localState=JSON.parse(localStorage.getItem('state'));
 
@@ -13,3 +13,9 @@ export const addTodo = (text) => ({
 export const deleteTodos = () => ({
   type: DELETE_TODOS,
 })
+
+export const completeTodo = (todo) => ({
+  type: COMPLETE_TODO,
+  todo: todo,
+})
+
