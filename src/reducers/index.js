@@ -1,10 +1,12 @@
 const localState = JSON.parse(localStorage.getItem('state')) || [];
+let newStateAfterAddOne = [];
+let newStateAfterCompleteOne =[];
 
 const todoApp = (state = localState, action) => {
   switch (action.type) {
 
     case "ADD_TODO":
-      const newStateAfterAddOne = [
+      newStateAfterAddOne = [
         ...state,
         {
           id: action.id,
@@ -17,10 +19,10 @@ const todoApp = (state = localState, action) => {
 
     case "DELETE_TODOS":
       localStorage.setItem('state', null);
-      return []
+      return [];
 
     case "COMPLETE_TODO":
-      const newStateAfterCompleteOne = state.map(todo =>
+      newStateAfterCompleteOne = state.map(todo =>
         (todo.id === action.todo.id)
           ? {...todo, isCompleted: true}
           : todo
