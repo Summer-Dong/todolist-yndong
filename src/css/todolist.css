@@ -28,6 +28,7 @@ ul div {
 li {
     width: 400px;
     text-align: left;
+    word-wrap: break-word;
 }
 
 button {
