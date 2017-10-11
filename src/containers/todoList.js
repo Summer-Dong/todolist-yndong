@@ -6,6 +6,17 @@ import {Component} from "react/lib/ReactBaseClasses";
 import {completeTodo} from "../actions/index";
 
 class TodoList extends Component {
+  static defaultProps = {
+    todos : JSON.parse(localStorage.getItem('state')) || []
+  }
+  static propTypes = {
+    todos : PropTypes.arrayOf(PropTypes.shape({
+            id: PropTypes.number.isRequired,
+            text: PropTypes.string.isRequired,
+            isCompleted: PropTypes.bool.isRequired
+          }).isRequired
+        ).isRequired
+  }
   render() {
     return (
       <ul>
@@ -21,19 +32,6 @@ class TodoList extends Component {
       </ul>
     );
   }
-}
-
-TodoList.PropTypes = {
-  todos: PropTypes.arrayOf(PropTypes.shape({
-      id: PropTypes.number.isRequired,
-      text: PropTypes.string.isRequired,
-      isCompleted: PropTypes.bool.isRequired
-    }).isRequired
-  ).isRequired
-}
-
-TodoList.defaultProps = {
-  todos: JSON.parse(localStorage.getItem('state')) || []
 }
 
 const mapDispatchToProps = (dispatch) => {
