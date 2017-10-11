@@ -4,6 +4,7 @@ import Todo from "../components/todo";
 import connect from "react-redux/es/connect/connect";
 import {Component} from "react/lib/ReactBaseClasses";
 import {completeTodo} from "../actions/index";
+import {store} from "../index.js"
 
 class TodoList extends Component {
   static defaultProps = {
@@ -17,6 +18,11 @@ class TodoList extends Component {
           }).isRequired
         ).isRequired
   }
+
+  componentDidUpdate(){
+    localStorage.setItem('state', JSON.stringify(store.getState()));
+  }
+
   render() {
     return (
       <ul>

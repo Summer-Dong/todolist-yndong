@@ -14,11 +14,9 @@ const todoApp = (state = localState, action) => {
           isCompleted: false
         }
       ];
-      localStorage.setItem('state', JSON.stringify(newStateAfterAddOne));
       return newStateAfterAddOne;
 
     case "DELETE_TODOS":
-      localStorage.setItem('state', null);
       return [];
 
     case "COMPLETE_TODO":
@@ -27,7 +25,6 @@ const todoApp = (state = localState, action) => {
           ? {...todo, isCompleted: true}
           : todo
       );
-      localStorage.setItem('state', JSON.stringify(newStateAfterCompleteOne));
       return newStateAfterCompleteOne;
     default:
       return state;

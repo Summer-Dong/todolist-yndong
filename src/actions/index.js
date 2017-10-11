@@ -1,8 +1,8 @@
 import {ADD_TODO, DELETE_TODOS, COMPLETE_TODO} from "../constants";
 
-const localState=JSON.parse(localStorage.getItem('state'));
+const localState=JSON.parse(localStorage.getItem('state')) ;
 
-let nextTodoId = localState===null ? 0 : localState[localState.length-1].id+1;
+let nextTodoId = localState===null || localState.length===0 ? 0 : localState[localState.length-1].id+1;
 
 export const addTodo = (text) => ({
   type: ADD_TODO,
