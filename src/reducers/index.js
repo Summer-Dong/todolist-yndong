@@ -1,4 +1,6 @@
-const localState = JSON.parse(localStorage.getItem('state')) || [];
+import { getStateFromLocalStorage } from '../apis/todos';
+
+const localState = getStateFromLocalStorage();
 let newStateAfterAddOne = [];
 let newStateAfterCompleteOne = [];
 

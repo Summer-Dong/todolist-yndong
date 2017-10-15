@@ -1,6 +1,7 @@
 import { ADD_TODO, DELETE_TODOS, COMPLETE_TODO } from '../constants';
+import { getStateFromLocalStorage } from '../apis/todos';
 
-const localState = JSON.parse(localStorage.getItem('state'));
+const localState = getStateFromLocalStorage();
 
 let nextTodoId = localState === null || localState.length === 0 ? 0 : localState[localState.length - 1].id + 1;
 

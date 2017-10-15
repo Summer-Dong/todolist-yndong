@@ -4,11 +4,11 @@ import Todo from "../components/todo";
 import connect from "react-redux/es/connect/connect";
 import {Component} from "react/lib/ReactBaseClasses";
 import {completeTodo} from "../actions/index";
-import {store} from "../index.js"
+import {getStateFromLocalStorage, setStateInLocalStorage} from "../apis/todos";
 
 class TodoList extends Component {
   static defaultProps = {
-    todos : JSON.parse(localStorage.getItem('state')) || []
+    todos : getStateFromLocalStorage()
   }
   static propTypes = {
     todos : PropTypes.arrayOf(PropTypes.shape({
@@ -20,7 +20,7 @@ class TodoList extends Component {
   }
 
   componentDidUpdate(){
-    localStorage.setItem('state', JSON.stringify(store.getState()));
+    setStateInLocalStorage();
   }
 
   render() {
