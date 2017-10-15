@@ -1,34 +1,32 @@
 const localState = JSON.parse(localStorage.getItem('state')) || [];
 let newStateAfterAddOne = [];
-let newStateAfterCompleteOne =[];
+let newStateAfterCompleteOne = [];
 
 const todoApp = (state = localState, action) => {
   switch (action.type) {
-
-    case "ADD_TODO":
+    case 'ADD_TODO':
       newStateAfterAddOne = [
         ...state,
         {
           id: action.id,
           text: action.text,
-          isCompleted: false
-        }
+          isCompleted: false,
+        },
       ];
       return newStateAfterAddOne;
 
-    case "DELETE_TODOS":
+    case 'DELETE_TODOS':
       return [];
 
-    case "COMPLETE_TODO":
+    case 'COMPLETE_TODO':
       newStateAfterCompleteOne = state.map(todo =>
-        (todo.id === action.todo.id)
-          ? {...todo, isCompleted: true}
-          : todo
-      );
+        ((todo.id === action.todo.id)
+          ? { ...todo, isCompleted: true }
+          : todo));
       return newStateAfterCompleteOne;
     default:
       return state;
   }
-}
+};
 
-export default todoApp
+export default todoApp;

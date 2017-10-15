@@ -1,9 +1,7 @@
-import * as React from "react";
+import * as React from 'react';
 
-const Todo = ({text}) => {
-  return (
-    <li>{text}</li>
-  );
-}
+const Todo = ({ text }) => (
+  <li>{text}</li>
+);
 
 export default Todo;

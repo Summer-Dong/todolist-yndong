@@ -1,18 +1,18 @@
-//less well
-export const A='a';
+// less well
+export const A = 'a';
 
-const B='b';
-export {B};
+const B = 'b';
+export { B };
 
-//well
-const C='c';
-const D='d';
-export {C,D};
+// well
+const C = 'c';
+const D = 'd';
+export { C, D };
 
-export default function(x, y){ return x+y};
+export default function (x, y) { return x + y; }
 
-const minus=(m, n)=>m-n;
-export {minus as minusMAndN}
+const minus = (m, n) => m - n;
+export { minus as minusMAndN };
 
 // //less well
 // const A='a';
