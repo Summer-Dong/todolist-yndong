@@ -5,6 +5,13 @@ import connect from "react-redux/es/connect/connect";
 import {Component} from "react/lib/ReactBaseClasses";
 import {completeTodo} from "../actions/index";
 import {getStateFromLocalStorage, setStateInLocalStorage} from "../apis/todos";
+import {Header, Icon} from "semantic-ui-react";
+
+var todolistContainer={
+  marginTop: 20,
+  marginLeft: 50,
+  width: 500
+};
 
 class TodoList extends Component {
   static defaultProps = {
@@ -25,7 +32,12 @@ class TodoList extends Component {
 
   render() {
     return (
-      <ul>
+      <div style={todolistContainer}>
+        <Header as="h4" textAlign="left">
+          <Icon name="tasks"/>
+          List everything, to do everything
+        </Header>
+        <ul>
         {this.props.todos.map((todo) => {
           return (
             todo.isCompleted===false &&
@@ -36,6 +48,7 @@ class TodoList extends Component {
           )})
         }
       </ul>
+      </div>
     );
   }
 }
