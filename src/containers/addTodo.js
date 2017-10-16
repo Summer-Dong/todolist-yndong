@@ -1,25 +1,40 @@
 import * as React from 'react';
 import connect from 'react-redux/es/connect/connect';
+import { Button, Icon } from 'semantic-ui-react';
 import { addTodo } from '../actions/index';
 
 let AddTodo = ({ dispatch }) => {
   let input;
-  const handleAddTodo = (target) => {
+
+  const handleAddTodo = () => {
+    input.value.trim() && dispatch(addTodo(input.value));
+    input.value = '';
+  };
+
+  const handleEnterKey = (target) => {
     if (target.charCode === 13) {
-      input.value.trim() && dispatch(addTodo(input.value));
-      input.value = '';
+      handleAddTodo();
     }
   };
+
   return (
     <div>
       <input
         placeholder="Please input your todo here."
         ref={(node) => { input = node; }}
-        onKeyPress={handleAddTodo}
+        onKeyPress={handleEnterKey}
       />
-      <button onClick={handleAddTodo}>
-        ADD TODO
-      </button>
+      <Button
+        basic
+        color="black"
+        animated="vertical"
+        onClick={handleAddTodo}
+      >
+        <Button.Content hidden>Add Todo</Button.Content>
+        <Button.Content visible>
+          <Icon name="add" />
+        </Button.Content>
+      </Button>
     </div>
   );
 };

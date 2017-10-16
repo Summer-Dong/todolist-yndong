@@ -35,3 +35,9 @@ button {
     text-transform: uppercase;
     height:30px;
 }
+
+div input {
+    padding: 5px;
+    margin-right: 20px;
+}
+
