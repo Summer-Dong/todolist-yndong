@@ -4,17 +4,23 @@ import { addTodo } from '../actions/index';
 
 let AddTodo = ({ dispatch }) => {
   let input;
-  const handleAddTodo = () => {
-    input.value.trim() && dispatch(addTodo(input.value));
-    input.value = '';
+  const handleAddTodo = (target) => {
+    if (target.charCode === 13) {
+      input.value.trim() && dispatch(addTodo(input.value));
+      input.value = '';
+    }
   };
   return (
-    <form onSubmit={handleAddTodo}>
-      <input placeholder="Please input your todo here." ref={(node) => { input = node; }} />
-      <button type="submit">
+    <div>
+      <input
+        placeholder="Please input your todo here."
+        ref={(node) => { input = node; }}
+        onKeyPress={handleAddTodo}
+      />
+      <button onClick={handleAddTodo}>
         ADD TODO
       </button>
-    </form>
+    </div>
   );
 };
 
