@@ -3,6 +3,7 @@ import { Card } from 'semantic-ui-react';
 
 const cardStyle = {
   width: 400,
+  textAlign: 'left',
 };
 
 const Todo = ({ text }) => (

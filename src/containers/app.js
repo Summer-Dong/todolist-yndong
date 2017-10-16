@@ -6,11 +6,14 @@ import '../css/todolist.css';
 
 import AddTodo from './addTodo';
 import Lists from './lists';
-import Buttons from '../containers/buttons';
 import Import from '../components/import';
 
+var appStyle = {
+  marginLeft: 50,
+};
+
 const App = () => (
-  <div className="App">
+  <div style={appStyle}>
 
     <Header as="h1">
       <Icon name="home" />
@@ -19,10 +22,9 @@ const App = () => (
       </Header.Content>
     </Header>
 
-    <div className="Todo-list-container">
+    <div>
       <AddTodo />
       <Lists />
-      <Buttons />
       <Import />
     </div>
 

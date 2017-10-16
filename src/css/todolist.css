@@ -25,12 +25,6 @@ ul div {
     align-items: center;
 }
 
-li {
-    width: 400px;
-    text-align: left;
-    word-wrap: break-word;
-}
-
 button {
     text-transform: uppercase;
     height:30px;

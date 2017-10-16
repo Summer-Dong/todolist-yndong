@@ -1,15 +1,15 @@
 import * as React from "react";
 import PropTypes from "prop-types";
 import Todo from "../components/todo";
+import Buttons from '../containers/buttons';
 import connect from "react-redux/es/connect/connect";
 import {Component} from "react/lib/ReactBaseClasses";
 import {completeTodo} from "../actions/index";
 import {getStateFromLocalStorage, setStateInLocalStorage} from "../apis/todos";
-import {Header, Icon} from "semantic-ui-react";
+import {Header, Icon, Radio} from "semantic-ui-react";
 
 var todolistContainer={
   marginTop: 20,
-  marginLeft: 50,
   width: 500
 };
 
@@ -43,11 +43,15 @@ class TodoList extends Component {
             todo.isCompleted===false &&
             <div key={todo.id}>
               <Todo key={todo.id} {...todo}/>
-              <button onClick={this.props.completeTodo.bind(this, todo)}>完成</button>
+              <Radio
+                label='✔️'
+                onClick={this.props.completeTodo.bind(this, todo)}
+              />
             </div>
           )})
         }
       </ul>
+      <Buttons/>
       </div>
     );
   }
