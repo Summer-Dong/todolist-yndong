@@ -21,6 +21,5 @@ yarn-debug.log*
 yarn-error.log*
 
 .idea
-.eslintrc.json
 src/node_modules/
 yarn.lock
