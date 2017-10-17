@@ -12,6 +12,7 @@ const addTodoContainer = {
 const inputStyle = {
   width: 480,
   height: 50,
+  padding: 5,
 };
 
 let AddTodo = ({ dispatch }) => {
