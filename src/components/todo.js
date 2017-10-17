@@ -1,19 +1,18 @@
 import * as React from 'react';
-import { Card } from 'semantic-ui-react';
+import { Input } from 'semantic-ui-react';
 
 const cardStyle = {
   width: 400,
   margin: 0,
+  wordWrap: true,
 };
 
 const Todo = ({ text }) => (
-  <Card style={cardStyle}>
-    <Card.Content>
-      <Card.Description >
-        {text}
-      </Card.Description>
-    </Card.Content>
-  </Card>
+  <Input
+    disabled
+    style={cardStyle}
+    value={text}
+  />
 );
 
 export default Todo;
