@@ -1,9 +1,6 @@
 import React from 'react';
 import { Header, Icon } from 'semantic-ui-react';
 
-import '../css/app.css';
-import '../css/todolist.css';
-
 import AddTodo from './addTodo';
 import Lists from './lists';
 import Import from '../components/import';

@@ -2,7 +2,6 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import { createStore } from 'redux';
 import Provider from 'react-redux/es/components/Provider';
-import './css/index.css';
 import App from './containers/app';
 import reducer from './reducers';
 import './semantic/dist/semantic.min.css';

@@ -6,12 +6,23 @@ import connect from "react-redux/es/connect/connect";
 import {Component} from "react/lib/ReactBaseClasses";
 import {completeTodo} from "../actions/index";
 import {getStateFromLocalStorage, setStateInLocalStorage} from "../apis/todos";
-import {Header, Icon, Radio} from "semantic-ui-react";
+import {Button, Header, Icon, Radio} from "semantic-ui-react";
 
-var todolistContainer={
+var todolistContainerStyle={
   marginTop: 20,
-  width: 500
+  width: 500,
+  display: 'flex',
+  flexDirection: 'column',
+  justifyContent: 'center',
 };
+
+var todolistStyle={
+  display: 'flex',
+  flexDirection: 'row',
+  justifyContent: 'space-between',
+  alignItems: 'center',
+  marginBottom: 20,
+}
 
 class TodoList extends Component {
   static defaultProps = {
@@ -31,29 +42,47 @@ class TodoList extends Component {
   }
 
   render() {
+    const { todos, completeTodo } = this.props;
     return (
-      <div style={todolistContainer}>
-        <Header as="h4" textAlign="left">
-          <Icon name="tasks"/>
-          List everything, to do everything
-        </Header>
-        <ul>
-        {this.props.todos.map((todo) => {
-          return (
-            todo.isCompleted===false &&
-            <div key={todo.id}>
-              <Todo key={todo.id} {...todo}/>
-              <Radio
-                label='✔️'
-                onClick={this.props.completeTodo.bind(this, todo)}
-              />
-            </div>
-          )})
-        }
-      </ul>
-      <Buttons/>
-      </div>
-    );
+      <div  style={todolistContainerStyle}>
+        {todos.length !== 0 ?
+          <div>
+            <Header as="h4" textAlign="left">
+              <Icon name="tasks"/>
+              List everything, to do everything
+            </Header>
+            <ul>
+              {todos.map((todo) => {
+                return (
+                  todo.isCompleted === false &&
+                  <div key={todo.id} style={todolistStyle}>
+                    <Todo key={todo.id} {...todo}/>
+                    <Radio
+                      label='✔️'
+                      onClick={completeTodo.bind(this, todo)}
+                    />
+                  </div>
+                )
+              })
+              }
+            </ul>
+            <Buttons/>
+          </div> :
+          <Button
+            basic
+            color='black'
+            icon='thumbs outline up'
+            label={{
+              as: 'a',
+              basic: true,
+              color: 'black',
+              pointing: 'left',
+              content: 'Great job! You have nothing to do~'
+            }}
+          />
+      }
+      </div>)
+
   }
 }
 

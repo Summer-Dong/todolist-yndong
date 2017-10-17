@@ -3,13 +3,13 @@ import { Card } from 'semantic-ui-react';
 
 const cardStyle = {
   width: 400,
-  textAlign: 'left',
+  margin: 0,
 };
 
 const Todo = ({ text }) => (
   <Card style={cardStyle}>
     <Card.Content>
-      <Card.Description>
+      <Card.Description >
         {text}
       </Card.Description>
     </Card.Content>

@@ -3,6 +3,17 @@ import connect from 'react-redux/es/connect/connect';
 import { Button, Icon } from 'semantic-ui-react';
 import { addTodo } from '../actions/index';
 
+const addTodoContainer = {
+  width: 550,
+  display: 'flex',
+  justifyContent: 'space-between',
+};
+
+const inputStyle = {
+  width: 480,
+  height: 50,
+};
+
 let AddTodo = ({ dispatch }) => {
   let input;
 
@@ -18,8 +29,9 @@ let AddTodo = ({ dispatch }) => {
   };
 
   return (
-    <div>
+    <div style={addTodoContainer}>
       <input
+        style={inputStyle}
         placeholder="Please input your todo here."
         ref={(node) => { input = node; }}
         onKeyPress={handleEnterKey}
