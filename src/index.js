@@ -4,7 +4,7 @@ import { createStore } from 'redux';
 import Provider from 'react-redux/es/components/Provider';
 import App from './containers/app';
 import reducer from './reducers';
-import './semantic/dist/semantic.min.css';
+import '../node_modules/semantic-ui/dist/semantic.min.css';
 
 export const store = createStore(reducer);
 
