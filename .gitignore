@@ -21,6 +21,4 @@ yarn-debug.log*
 yarn-error.log*
 
 .idea
-src/semantic/
 yarn.lock
-package-lock.json
