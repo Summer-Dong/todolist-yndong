@@ -5,7 +5,7 @@ import Buttons from '../containers/buttons';
 import connect from "react-redux/es/connect/connect";
 import {Component} from "react/lib/ReactBaseClasses";
 import {completeTodo} from "../actions/index";
-import {getStateFromLocalStorage, setStateInLocalStorage} from "../apis/todos";
+import {getStateFromLocalStorage, setStateInLeancloud, setStateInLocalStorage} from "../apis/todos";
 import {Button, Header, Icon, List} from "semantic-ui-react";
 
 var todolistContainerStyle={
@@ -40,6 +40,7 @@ class TodoList extends Component {
 
   componentDidUpdate(){
     setStateInLocalStorage();
+    setStateInLeancloud();
   }
 
   renderTodoList = () => (
