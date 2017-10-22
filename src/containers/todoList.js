@@ -8,66 +8,64 @@ import {completeTodo, deleteTodo} from "../actions/index";
 import {getStateFromLocalStorage, setStateInLeancloud, setStateInLocalStorage} from "../apis/todos";
 import {Button, Header, Icon, List} from "semantic-ui-react";
 
-var todolistContainerStyle={
-  marginTop: 20,
-  width: 500,
-  display: 'flex',
-  flexDirection: 'column',
-  justifyContent: 'center',
-};
 
-var todolistStyle={
-  width: 470,
-  display: 'flex',
-  flexDirection: 'row',
-  justifyContent: 'space-between',
-  alignItems: 'center',
-  marginBottom: 20,
-}
+const styles = {
+  todolistContainer: {
+    marginTop: 20,
+    width: 500,
+    display: 'flex',
+    flexDirection: 'column',
+    justifyContent: 'center',
+  },
+  todolist: {
+    width: 470,
+    display: 'flex',
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+    alignItems: 'center',
+    marginBottom: 20,
+  }
+};
 
 class TodoList extends Component {
   static defaultProps = {
-    todos : getStateFromLocalStorage()
+    todos: getStateFromLocalStorage()
   }
   static propTypes = {
-    todos : PropTypes.arrayOf(PropTypes.shape({
-            id: PropTypes.number.isRequired,
-            text: PropTypes.string.isRequired,
-            isCompleted: PropTypes.bool.isRequired
-          }).isRequired
-        ).isRequired
+    todos: PropTypes.arrayOf(PropTypes.shape({
+        id: PropTypes.number.isRequired,
+        text: PropTypes.string.isRequired,
+        isCompleted: PropTypes.bool.isRequired
+      }).isRequired
+    ).isRequired
   }
 
-  componentDidUpdate(){
+  componentDidUpdate() {
     setStateInLocalStorage();
     setStateInLeancloud();
   }
 
-  handleCompleteTodo = (todo) => {
-    this.props.completeTodo(todo);
-  }
+  // handleCompleteTodo = (todo) => {
+  //   this.props.completeTodo(todo);
+  // }
 
   renderTodoList = () => (
     <div>
-      <Header as="h4" textAlign="left">
-        <Icon name="tasks"/>
-        List everything, to do everything
-      </Header>
       <List>
-        {this.props.todos.map((todo) => {
+        {this.props.todos.filter(({isCompleted}) =>
+          isCompleted === false).map((todo) => {
           return (
-            todo.isCompleted === false &&
-            <div key={todo.id} style={todolistStyle}>
+            <div key={todo.id} style={styles.todolist}>
               <Todo key={todo.id} {...todo}/>
               <Button
                 basic
                 color="black"
                 animated="vertical"
-                onClick={this.handleCompleteTodo.bind(this, todo)}
+                onClick={this.props.completeTodo.bind(this, todo)}
               >
                 <Button.Content hidden>Complete</Button.Content>
                 <Button.Content visible>
-                  <Icon name="check" />
+                  <Icon name="check"/>
                 </Button.Content>
               </Button>
               <Button
@@ -78,7 +76,7 @@ class TodoList extends Component {
               >
                 <Button.Content hidden>Delete</Button.Content>
                 <Button.Content visible>
-                  <Icon name="delete" />
+                  <Icon name="delete"/>
                 </Button.Content>
               </Button>
             </div>
@@ -107,8 +105,12 @@ class TodoList extends Component {
 
   render() {
     return (
-      <div  style={todolistContainerStyle}>
-        {this.props.todos.filter(({ isCompleted }) =>
+      <div style={styles.todolistContainer}>
+        <Header as="h4" textAlign="left">
+          <Icon name="tasks"/>
+          List everything, to do everything
+        </Header>
+        {this.props.todos.filter(({isCompleted}) =>
           isCompleted === false).length !== 0 ? this.renderTodoList() : this.renderEmpeyMsg()}
       </div>
     )
@@ -118,8 +120,8 @@ class TodoList extends Component {
 
 const mapDispatchToProps = (dispatch) => {
   return {
-    completeTodo: (todo)=> dispatch(completeTodo(todo)),
-    deleteTodo: (todo)=> dispatch(deleteTodo(todo))
+    completeTodo: (todo) => dispatch(completeTodo(todo)),
+    deleteTodo: (todo) => dispatch(deleteTodo(todo))
   }
 }
 

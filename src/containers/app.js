@@ -5,30 +5,30 @@ import AddTodo from './addTodo';
 import Lists from './lists';
 import Import from '../components/import';
 
-const appStyle = {
-  marginLeft: 50,
+const styles = {
+  appStyle: {
+    marginLeft: 50,
+  },
+  footerStyle: {
+    height: 30,
+    position: 'absolute',
+    bottom: 0,
+    left: 0,
+    right: 0,
+    display: 'flex',
+    justifyContent: 'flex-end',
+    alignItems: 'center',
+    backgroundColor: '#efefef',
+    textAlign: 'right',
+  },
+  footerTextStyle: {
+    paddingRight: 50,
+    color: 'black',
+  },
 };
-
-const footerStyle = {
-  height: 30,
-  position: 'absolute',
-  bottom: 0,
-  left: 0,
-  right: 0,
-  display: 'flex',
-  justifyContent: 'flex-end',
-  alignItems: 'center',
-  backgroundColor: '#efefef',
-  textAlign: 'right',
-};
-
-const footerTextStyle = {
-  paddingRight: 50,
-  color: 'black',
-}
 
 const App = () => (
-  <div style={appStyle}>
+  <div style={styles.appStyle}>
 
     <Header as="h1">
       <Icon name="home" />
@@ -43,9 +43,9 @@ const App = () => (
       <Import />
     </div>
 
-    <footer style={footerStyle}>
+    <footer style={styles.footerStyle}>
       <Icon name="at" />
-      <a style={footerTextStyle} href="mailto:yndong@thoughtworks.com">yndong</a>
+      <a style={styles.footerTextStyle} href="mailto:yndong@thoughtworks.com">yndong</a>
     </footer>
 
   </div>
