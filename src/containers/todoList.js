@@ -4,7 +4,7 @@ import Todo from "../components/todo";
 import Buttons from '../containers/buttons';
 import connect from "react-redux/es/connect/connect";
 import {Component} from "react/lib/ReactBaseClasses";
-import {completeTodo} from "../actions/index";
+import {completeTodo, deleteTodo} from "../actions/index";
 import {getStateFromLocalStorage, setStateInLeancloud, setStateInLocalStorage} from "../apis/todos";
 import {Button, Header, Icon, List} from "semantic-ui-react";
 
@@ -65,6 +65,17 @@ class TodoList extends Component {
                 animated="vertical"
                 onClick={this.handleCompleteTodo.bind(this, todo)}
               >
+                <Button.Content hidden>Complete</Button.Content>
+                <Button.Content visible>
+                  <Icon name="check" />
+                </Button.Content>
+              </Button>
+              <Button
+                basic
+                color="black"
+                animated="vertical"
+                onClick={this.props.deleteTodo.bind(this, todo)}
+              >
                 <Button.Content hidden>Delete</Button.Content>
                 <Button.Content visible>
                   <Icon name="delete" />
@@ -105,7 +116,10 @@ class TodoList extends Component {
 }
 
 const mapDispatchToProps = (dispatch) => {
-  return {completeTodo: (todo)=> dispatch(completeTodo(todo))}
+  return {
+    completeTodo: (todo)=> dispatch(completeTodo(todo)),
+    deleteTodo: (todo)=> dispatch(deleteTodo(todo))
+  }
 }
 
 const mapStateToProps = (state) => {

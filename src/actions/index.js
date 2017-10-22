@@ -1,4 +1,4 @@
-import { ADD_TODO, DELETE_TODOS, COMPLETE_TODO } from '../constants';
+import {ADD_TODO, DELETE_ALL_TODOS, COMPLETE_TODO, DELETE_TODO} from '../constants';
 import { getStateFromLocalStorage } from '../apis/todos';
 
 const localState = getStateFromLocalStorage();
@@ -11,12 +11,17 @@ export const addTodo = text => ({
   text,
 });
 
-export const deleteTodos = () => ({
-  type: DELETE_TODOS,
+export const deleteAlltodos = () => ({
+  type: DELETE_ALL_TODOS,
 });
 
 export const completeTodo = todo => ({
   type: COMPLETE_TODO,
+  todo,
+});
+
+export const deleteTodo = todo => ({
+  type: DELETE_TODO,
   todo,
 });
 

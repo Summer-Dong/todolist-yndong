@@ -17,7 +17,7 @@ const todoApp = (state = localState, action) => {
       ];
       return newStateAfterAddOne;
 
-    case 'DELETE_TODOS':
+    case 'DELETE_ALL_TODOS':
       return [];
 
     case 'COMPLETE_TODO':
@@ -26,6 +26,9 @@ const todoApp = (state = localState, action) => {
           ? { ...todo, isCompleted: true }
           : todo));
       return newStateAfterCompleteOne;
+    case 'DELETE_TODO':
+      return state.filter(({ id }) =>
+        id !== action.todo.id);
     default:
       return state;
   }
