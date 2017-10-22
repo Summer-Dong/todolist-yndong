@@ -16,10 +16,9 @@ const styles = {
     justifyContent: 'space-between',
   },
   lists: {
-    backgroundColor: '#fbfbfb',
-    border: 10,
-    borderColor: 'red',
+    border: '1px solid black',
     padding: 15,
+    marginRight:10,
     flex: 1,
     flexDirection: 'row',
     justifyContent: 'center',
