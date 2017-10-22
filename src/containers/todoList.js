@@ -108,7 +108,8 @@ class TodoList extends Component {
   render() {
     return (
       <div  style={todolistContainerStyle}>
-        {this.props.todos.length !== 0 ? this.renderTodoList() : this.renderEmpeyMsg()}
+        {this.props.todos.filter(({ isCompleted }) =>
+          isCompleted === false).length !== 0 ? this.renderTodoList() : this.renderEmpeyMsg()}
       </div>
     )
 
