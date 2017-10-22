@@ -2,9 +2,10 @@ import * as React from 'react';
 import { Input } from 'semantic-ui-react';
 
 const cardStyle = {
-  width: 400,
+  width: 450,
   margin: 0,
   wordWrap: true,
+  marginRight: 20,
 };
 
 const Todo = ({ text }) => (

@@ -8,6 +8,7 @@ import Import from '../components/import';
 const styles = {
   appStyle: {
     marginLeft: 50,
+    marginRight: 50,
   },
   footerStyle: {
     height: 30,

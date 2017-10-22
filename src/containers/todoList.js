@@ -10,15 +10,22 @@ import {Button, Header, Icon, List} from "semantic-ui-react";
 
 
 const styles = {
-  todolistContainer: {
+  container: {
     marginTop: 20,
-    width: 500,
     display: 'flex',
-    flexDirection: 'column',
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+  },
+  lists: {
+    backgroundColor: '#fbfbfb',
+    border: 10,
+    borderColor: 'red',
+    padding: 15,
+    flex: 1,
+    flexDirection: 'row',
     justifyContent: 'center',
   },
   todolist: {
-    width: 470,
     display: 'flex',
     flexDirection: 'row',
     justifyContent: 'space-between',
@@ -44,10 +51,6 @@ class TodoList extends Component {
     setStateInLocalStorage();
     setStateInLeancloud();
   }
-
-  // handleCompleteTodo = (todo) => {
-  //   this.props.completeTodo(todo);
-  // }
 
   renderTodoList = () => (
     <div>
@@ -88,30 +91,71 @@ class TodoList extends Component {
     </div>
   )
 
-  renderEmpeyMsg = () => (
+  renderTodolistEmpeyMsg = () => (
     <Button
       basic
-      color='black'
+      color='green'
       icon='thumbs outline up'
       label={{
         as: 'a',
         basic: true,
-        color: 'black',
+        color: 'green',
         pointing: 'left',
         content: 'Great job! You have nothing to do~'
       }}
     />
   )
 
+  renderCompletedTodolist = () => (
+    <div>
+      <List>
+        {this.props.todos.filter(({isCompleted}) =>
+          isCompleted === true).map((todo) => {
+          return (
+            <div key={todo.id} style={styles.todolist}>
+              <Todo key={todo.id} {...todo}/>
+            </div>
+          )
+        })
+        }
+      </List>
+    </div>
+  )
+
+  renderCompletedTodolistEmpeyMsg = () => (
+    <Button
+      basic
+      color='red'
+      icon='info'
+      label={{
+        as: 'a',
+        basic: true,
+        color: 'red',
+        pointing: 'left',
+        content: 'Oops, seems you have done nothing ...'
+      }}
+    />
+  )
+
   render() {
     return (
-      <div style={styles.todolistContainer}>
-        <Header as="h4" textAlign="left">
-          <Icon name="tasks"/>
-          List everything, to do everything
-        </Header>
-        {this.props.todos.filter(({isCompleted}) =>
-          isCompleted === false).length !== 0 ? this.renderTodoList() : this.renderEmpeyMsg()}
+      <div style={styles.container}>
+        <div style={styles.lists}>
+          <Header as="h4" textAlign="left">
+            <Icon name="tasks"/>
+            List everything, to do everything
+          </Header>
+          {this.props.todos.filter(({isCompleted}) =>
+            isCompleted === false).length !== 0 ? this.renderTodoList() : this.renderTodolistEmpeyMsg()}
+        </div>
+        <div style={styles.lists}>
+          <Header as="h4" textAlign="left">
+            <Icon name="tasks"/>
+            Your achievement is here~
+          </Header>
+          {this.props.todos.filter(({isCompleted}) =>
+            isCompleted === true).length !== 0 ? this.renderCompletedTodolist() : this.renderCompletedTodolistEmpeyMsg()}
+        </div>
       </div>
     )
 
