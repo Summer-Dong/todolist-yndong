@@ -43,6 +43,10 @@ class TodoList extends Component {
     setStateInLeancloud();
   }
 
+  handleCompleteTodo = (todo) => {
+    this.props.completeTodo(todo);
+  }
+
   renderTodoList = () => (
     <div>
       <Header as="h4" textAlign="left">
@@ -59,7 +63,7 @@ class TodoList extends Component {
                 basic
                 color="black"
                 animated="vertical"
-                onClick={this.props.completeTodo.bind(this, todo)}
+                onClick={this.handleCompleteTodo.bind(this, todo)}
               >
                 <Button.Content hidden>Delete</Button.Content>
                 <Button.Content visible>
