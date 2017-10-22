@@ -5,28 +5,24 @@ import connect from "react-redux/es/connect/connect";
 import {Component} from "react/lib/ReactBaseClasses";
 import {completeTodo, deleteTodo} from "../actions/index";
 import {getStateFromLocalStorage, setStateInLeancloud, setStateInLocalStorage} from "../apis/todos";
-import {Button, Header, Icon, List} from "semantic-ui-react";
+import {Button, Grid, Header, Icon, List} from "semantic-ui-react";
 
 
 const styles = {
   container: {
     marginTop: 20,
     display: 'flex',
-    flexDirection: 'row',
-    justifyContent: 'space-between',
+    flexWrap: 'wrap',
   },
   lists: {
     border: '1px solid black',
     padding: 15,
     marginRight:10,
     flex: 1,
-    flexDirection: 'row',
-    justifyContent: 'center',
-  },
+},
   todolist: {
     display: 'flex',
     flexDirection: 'row',
-    justifyContent: 'space-between',
     alignItems: 'center',
     marginBottom: 20,
   }
@@ -82,8 +78,7 @@ class TodoList extends Component {
               </Button>
             </div>
           )
-        })
-        }
+        })}
       </List>
     </div>
   )
@@ -136,24 +131,26 @@ class TodoList extends Component {
 
   render() {
     return (
-      <div style={styles.container}>
-        <div style={styles.lists}>
-          <Header as="h4" textAlign="left">
-            <Icon name="tasks"/>
-            List everything, to do everything
-          </Header>
-          {this.props.todos.filter(({isCompleted}) =>
-            isCompleted === false).length !== 0 ? this.renderTodoList() : this.renderTodolistEmpeyMsg()}
-        </div>
-        <div style={styles.lists}>
-          <Header as="h4" textAlign="left">
-            <Icon name="tasks"/>
-            Your achievement is here~
-          </Header>
-          {this.props.todos.filter(({isCompleted}) =>
-            isCompleted === true).length !== 0 ? this.renderCompletedTodolist() : this.renderCompletedTodolistEmpeyMsg()}
-        </div>
-      </div>
+      <Grid style={styles.container}>
+        <Grid.Row columns={2}>
+          <Grid.Column style={styles.lists}>
+            <Header as="h4" textAlign="left">
+              <Icon name="tasks"/>
+              List everything, to do everything
+            </Header>
+            {this.props.todos.filter(({isCompleted}) =>
+              isCompleted === false).length !== 0 ? this.renderTodoList() : this.renderTodolistEmpeyMsg()}
+          </Grid.Column>
+          <Grid.Column style={styles.lists}>
+            <Header as="h4" textAlign="left">
+              <Icon name="tasks"/>
+              Your achievement is here~
+            </Header>
+            {this.props.todos.filter(({isCompleted}) =>
+              isCompleted === true).length !== 0 ? this.renderCompletedTodolist() : this.renderCompletedTodolistEmpeyMsg()}
+          </Grid.Column>
+        </Grid.Row>
+      </Grid>
     )
 
   }

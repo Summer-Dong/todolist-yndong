@@ -1,20 +1,21 @@
 import * as React from 'react';
 import connect from 'react-redux/es/connect/connect';
-import { Button, Icon } from 'semantic-ui-react';
+import { Button, Grid, Icon } from 'semantic-ui-react';
 import Buttons from '../containers/buttons';
 import { addTodo } from '../actions/index';
 
 
 const styles = {
   addTodoContainer: {
-    width: 550,
     display: 'flex',
-    justifyContent: 'space-between',
+    justifyContent: 'space-around',
+    alignItems: 'center',
   },
   inputStyle: {
-    width: 480,
+    flexGrow: 1,
     height: 50,
     padding: 5,
+    marginRight: 5,
   },
 };
 
@@ -33,26 +34,32 @@ let AddTodo = ({ dispatch }) => {
   };
 
   return (
-    <div style={styles.addTodoContainer}>
-      <input
-        style={styles.inputStyle}
-        placeholder="Please input your todo here."
-        ref={(node) => { input = node; }}
-        onKeyPress={handleEnterKey}
-      />
-      <Button
-        basic
-        color="black"
-        animated="vertical"
-        onClick={handleAddTodo}
-      >
-        <Button.Content hidden>Add Todo</Button.Content>
-        <Button.Content visible>
-          <Icon name="add" />
-        </Button.Content>
-      </Button>
-      <Buttons/>
-    </div>
+    <Grid>
+      <Grid.Row columns={2} style={styles.addTodoContainer}>
+        <Grid.Column style={styles.addTodoContainer}>
+          <input
+            style={styles.inputStyle}
+            placeholder="Please input your todo here."
+            ref={(node) => {
+              input = node;
+            }}
+            onKeyPress={handleEnterKey}
+          />
+          <Button
+            basic
+            color="black"
+            animated="vertical"
+            onClick={handleAddTodo}
+          >
+            <Button.Content hidden>Add Todo</Button.Content>
+            <Button.Content visible>
+              <Icon name="add" />
+            </Button.Content>
+          </Button>
+        </Grid.Column>
+        <Grid.Column><Buttons /></Grid.Column>
+      </Grid.Row>
+    </Grid>
   );
 };
 

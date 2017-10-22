@@ -4,15 +4,9 @@ import { Button } from 'semantic-ui-react';
 
 import { deleteAlltodos } from '../actions/index';
 
-var buttonStyle = {
-  position: 'absolute',
-  right: 100,
-};
-
 let Buttons = ({ dispatch }) => (
   <div>
     <Button
-      style={buttonStyle}
       basic
       color="red"
       icon="archive"
