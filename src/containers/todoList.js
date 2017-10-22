@@ -1,7 +1,6 @@
 import * as React from "react";
 import PropTypes from "prop-types";
 import Todo from "../components/todo";
-import Buttons from '../containers/buttons';
 import connect from "react-redux/es/connect/connect";
 import {Component} from "react/lib/ReactBaseClasses";
 import {completeTodo, deleteTodo} from "../actions/index";
@@ -87,7 +86,6 @@ class TodoList extends Component {
         })
         }
       </List>
-      <Buttons/>
     </div>
   )
 

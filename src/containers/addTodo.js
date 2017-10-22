@@ -1,6 +1,7 @@
 import * as React from 'react';
 import connect from 'react-redux/es/connect/connect';
 import { Button, Icon } from 'semantic-ui-react';
+import Buttons from '../containers/buttons';
 import { addTodo } from '../actions/index';
 
 
@@ -50,6 +51,7 @@ let AddTodo = ({ dispatch }) => {
           <Icon name="add" />
         </Button.Content>
       </Button>
+      <Buttons/>
     </div>
   );
 };

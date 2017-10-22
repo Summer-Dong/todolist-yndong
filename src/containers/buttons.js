@@ -5,7 +5,8 @@ import { Button } from 'semantic-ui-react';
 import { deleteAlltodos } from '../actions/index';
 
 var buttonStyle = {
-  marginTop: 20,
+  position: 'absolute',
+  right: 100,
 };
 
 let Buttons = ({ dispatch }) => (
