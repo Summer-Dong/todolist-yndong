@@ -1,11 +1,21 @@
 import React from 'react';
-import { Header, Icon } from 'semantic-ui-react';
+import { Grid, Header, Icon, Image } from 'semantic-ui-react';
 
 import AddTodo from './addTodo';
 import Lists from './lists';
 import Import from '../components/import';
+import todolist from '../todolist.png';
 
 const styles = {
+  header: {
+    height: 100,
+    backgroundColor: '#fbfbfb',
+    border: '1px solid #fcfcfc',
+    marginBottom: 20,
+  },
+  headerImage: {
+    height: 100,
+  },
   appStyle: {
     marginLeft: 50,
     marginRight: 50,
@@ -30,14 +40,21 @@ const styles = {
 
 const App = () => (
   <div style={styles.appStyle}>
-
-    <Header as="h1">
-      <Icon name="home" />
-      <Header.Content>
-        My Todolist
-      </Header.Content>
-    </Header>
-
+    <Grid style={styles.header}>
+      <Grid.Row columns={2}>
+        <Grid.Column>
+          <Header as="h1">
+            <Icon name="home" />
+            <Header.Content>
+              My Todolist
+            </Header.Content>
+          </Header>
+        </Grid.Column>
+        <Grid.Column>
+          <Image src={todolist} style={styles.headerImage} />
+        </Grid.Column>
+      </Grid.Row>
+    </Grid>
     <div>
       <AddTodo />
       <Lists />
@@ -48,7 +65,6 @@ const App = () => (
       <Icon name="at" />
       <a style={styles.footerTextStyle} href="mailto:yndong@thoughtworks.com">yndong</a>
     </footer>
-
   </div>
 );
 

@@ -15,7 +15,8 @@ const styles = {
     flexWrap: 'wrap',
   },
   lists: {
-    border: '1px solid black',
+    border: '1px solid #bcbdbd',
+    borderRadius: 10,
     padding: 15,
     marginRight:10,
     flex: 1,
@@ -56,7 +57,7 @@ class TodoList extends Component {
               <Todo key={todo.id} {...todo}/>
               <Button
                 basic
-                color="black"
+                color="green"
                 animated="vertical"
                 onClick={this.props.completeTodo.bind(this, todo)}
               >
@@ -67,7 +68,7 @@ class TodoList extends Component {
               </Button>
               <Button
                 basic
-                color="black"
+                color="red"
                 animated="vertical"
                 onClick={this.props.deleteTodo.bind(this, todo)}
               >
@@ -117,12 +118,12 @@ class TodoList extends Component {
   renderCompletedTodolistEmpeyMsg = () => (
     <Button
       basic
-      color='red'
+      color='black'
       icon='info'
       label={{
         as: 'a',
         basic: true,
-        color: 'red',
+        color: 'black',
         pointing: 'left',
         content: 'Oops, seems you have done nothing ...'
       }}
