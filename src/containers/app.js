@@ -22,7 +22,7 @@ const styles = {
   },
   footerStyle: {
     height: 30,
-    position: 'absolute',
+    position: 'fixed',
     bottom: 0,
     left: 0,
     right: 0,
