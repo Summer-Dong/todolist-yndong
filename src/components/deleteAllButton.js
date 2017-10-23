@@ -4,7 +4,7 @@ import { Button } from 'semantic-ui-react';
 
 import { deleteAlltodos } from '../actions/index';
 
-let Buttons = ({ dispatch }) => (
+let DeleteAllButton = ({ dispatch }) => (
   <div>
     <Button
       basic
@@ -17,6 +17,6 @@ let Buttons = ({ dispatch }) => (
   </div>
 );
 
-Buttons = connect()(Buttons);
+DeleteAllButton = connect()(DeleteAllButton);
 
-export default (Buttons);
+export default (DeleteAllButton);

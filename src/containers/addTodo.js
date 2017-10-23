@@ -1,7 +1,7 @@
 import * as React from 'react';
 import connect from 'react-redux/es/connect/connect';
 import { Button, Grid, Icon } from 'semantic-ui-react';
-import Buttons from '../containers/buttons';
+import DeleteAllButton from '../components/deleteAllButton';
 import { addTodo } from '../actions/index';
 
 
@@ -57,7 +57,7 @@ let AddTodo = ({ dispatch }) => {
             </Button.Content>
           </Button>
         </Grid.Column>
-        <Grid.Column><Buttons /></Grid.Column>
+        <Grid.Column><DeleteAllButton /></Grid.Column>
       </Grid.Row>
     </Grid>
   );
