@@ -54,7 +54,7 @@ class Lists extends Component {
           isCompleted === false).map((todo) => {
           return (
             <div key={todo.id} style={styles.todolist}>
-              <Todo key={todo.id} {...todo}/>
+              <Todo key={todo.id+1} {...todo}/>
               <Button
                 basic
                 color="green"

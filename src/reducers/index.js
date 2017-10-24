@@ -1,14 +1,11 @@
-import { getStateFromLocalStorage } from '../apis/todos';
-
-const localState = getStateFromLocalStorage();
 let newStateAfterAddOne = [];
 let newStateAfterCompleteOne = [];
 
-const todoApp = (state = localState, action) => {
+const todoApp = (state = [], action) => {
   switch (action.type) {
     case 'ADD_TODO':
       newStateAfterAddOne = [
-        ...state,
+        ...action.localState,
         {
           id: action.id,
           text: action.text,

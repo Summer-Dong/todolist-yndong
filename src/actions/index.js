@@ -1,15 +1,18 @@
-import {ADD_TODO, DELETE_ALL_TODOS, COMPLETE_TODO, DELETE_TODO} from '../constants';
-import { getStateFromLocalStorage } from '../apis/todos';
+import { ADD_TODO, DELETE_ALL_TODOS, COMPLETE_TODO, DELETE_TODO } from '../constants';
+import { getStateFromLeancloud } from '../apis/todos';
 
-const localState = getStateFromLocalStorage();
-
-let nextTodoId = localState === null || localState.length === 0 ? 0 : localState[localState.length - 1].id + 1;
-
-export const addTodo = text => ({
+export const addTodo = text => dispatch => getStateFromLeancloud().then((localState) => {
+  // const nextTodoId = localState === null || localState.length === 0 ?
+  //   0 : localState.length - 1;
+  const nextTodoId = localState === null ? 0 : localState.length;
+  console.log(nextTodoId + "-------"+localState.length);
+  return [nextTodoId, localState];
+}).then(([nextTodoId, localState]) => dispatch({
   type: ADD_TODO,
-  id: nextTodoId++,
+  id: nextTodoId,
+  localState,
   text,
-});
+}));
 
 export const deleteAlltodos = () => ({
   type: DELETE_ALL_TODOS,
