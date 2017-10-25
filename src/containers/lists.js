@@ -3,10 +3,9 @@ import PropTypes from "prop-types";
 import Todo from "../components/todo";
 import connect from "react-redux/es/connect/connect";
 import {Component} from "react/lib/ReactBaseClasses";
-import {completeTodo, deleteTodo} from "../actions/index";
-import {getStateFromLocalStorage, setStateInLeancloud, setStateInLocalStorage} from "../apis/todos";
+import {completeTodo, deleteTodo, setInitialState} from "../actions/index";
 import {Button, Grid, Header, Icon, List} from "semantic-ui-react";
-
+import {getStateFromLeanCloud} from "../apis/todos";
 
 const styles = {
   container: {
@@ -18,9 +17,9 @@ const styles = {
     border: '1px solid #bcbdbd',
     borderRadius: 10,
     padding: 15,
-    marginRight:10,
+    marginRight: 10,
     flex: 1,
-},
+  },
   todolist: {
     display: 'flex',
     flexDirection: 'row',
@@ -30,9 +29,19 @@ const styles = {
 };
 
 class Lists extends Component {
-  static defaultProps = {
-    todos: getStateFromLocalStorage()
+
+  constructor(props) {
+    super(props);
+    this.state = {
+      isLoading: true,
+      todos: []
+    }
   }
+
+  static defaultProps = {
+    todos: []
+  }
+
   static propTypes = {
     todos: PropTypes.arrayOf(PropTypes.shape({
         id: PropTypes.number.isRequired,
@@ -42,19 +51,21 @@ class Lists extends Component {
     ).isRequired
   }
 
-  componentDidUpdate() {
-    setStateInLocalStorage();
-    setStateInLeancloud();
+  componentWillMount() {
+    getStateFromLeanCloud()
+      .then((todos) => {
+        this.setState({isLoading: false, todos: todos})
+      });
   }
 
   renderTodoList = () => (
     <div>
       <List>
-        {this.props.todos.filter(({isCompleted}) =>
+        {this.state.todos.filter(({isCompleted}) =>
           isCompleted === false).map((todo) => {
           return (
             <div key={todo.id} style={styles.todolist}>
-              <Todo key={todo.id+1} {...todo}/>
+              <Todo key={todo.id} {...todo}/>
               <Button
                 basic
                 color="green"
@@ -102,7 +113,7 @@ class Lists extends Component {
   renderCompletedTodolist = () => (
     <div>
       <List>
-        {this.props.todos.filter(({isCompleted}) =>
+        {this.state.todos.filter(({isCompleted}) =>
           isCompleted === true).map((todo) => {
           return (
             <div key={todo.id} style={styles.todolist}>
@@ -130,7 +141,7 @@ class Lists extends Component {
     />
   )
 
-  render() {
+  renderData = () => {
     return (
       <Grid style={styles.container}>
         <Grid.Row columns={2}>
@@ -139,7 +150,7 @@ class Lists extends Component {
               <Icon name="tasks"/>
               List everything, to do everything
             </Header>
-            {this.props.todos.filter(({isCompleted}) =>
+            {this.state.todos.filter(({isCompleted}) =>
               isCompleted === false).length !== 0 ? this.renderTodoList() : this.renderTodolistEmpeyMsg()}
           </Grid.Column>
           <Grid.Column style={styles.lists}>
@@ -147,20 +158,24 @@ class Lists extends Component {
               <Icon name="tasks"/>
               Your achievement is here~
             </Header>
-            {this.props.todos.filter(({isCompleted}) =>
+            {this.state.todos.filter(({isCompleted}) =>
               isCompleted === true).length !== 0 ? this.renderCompletedTodolist() : this.renderCompletedTodolistEmpeyMsg()}
           </Grid.Column>
         </Grid.Row>
       </Grid>
     )
+  }
 
+  render() {
+    return (this.state.isLoading ? <p>数据加载中……</p> : this.renderData())
   }
 }
 
 const mapDispatchToProps = (dispatch) => {
   return {
     completeTodo: (todo) => dispatch(completeTodo(todo)),
-    deleteTodo: (todo) => dispatch(deleteTodo(todo))
+    deleteTodo: (todo) => dispatch(deleteTodo(todo)),
+    setInitialState: () => dispatch(setInitialState())
   }
 }
 

@@ -3,6 +3,7 @@ import connect from 'react-redux/es/connect/connect';
 import { Button, Grid, Icon } from 'semantic-ui-react';
 import DeleteAllButton from '../components/deleteAllButton';
 import { addTodo } from '../actions/index';
+import { addTodoToLeanCloud } from '../apis/todos';
 
 
 const styles = {
@@ -23,7 +24,7 @@ let AddTodo = ({ dispatch }) => {
   let input;
 
   const handleAddTodo = () => {
-    input.value.trim() && dispatch(addTodo(input.value));
+    input.value.trim() && dispatch(addTodo(input.value)) && addTodoToLeanCloud(input.value);
     input.value = '';
   };
 

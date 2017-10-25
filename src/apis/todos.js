@@ -1,5 +1,4 @@
 import AV from 'leancloud-storage';
-import * as _ from 'lodash';
 import { store } from '../index';
 
 const APP_ID = 'yL98ASNXWEJ0TFMYvxr2uBdO-gzGzoHsz';
@@ -13,7 +12,7 @@ AV.init({
   appKey: APP_KEY,
 });
 
-const query = new AV.Query('Todo');
+const query = new AV.Query('TodoDB');
 
 export const getStateFromLocalStorage = () => JSON.parse(localStorage.getItem('state')) || [];
 
@@ -21,35 +20,42 @@ export const setStateInLocalStorage = () => {
   localStorage.setItem('state', JSON.stringify(store.getState()));
 };
 
-export const getStateFromLeancloud = () => {
+export const getStateFromLeanCloud = () => {
   query.include('id');
   query.include('text');
   query.include('isCompleted');
   query.descending('createdAt');
   return query.find()
-    .then(todos => todos.map(todo => todo.attributes))
+    .then(todos => todos.map((todo) => {
+      console.log(todo.attributes);
+      return todo.attributes;
+    }))
     .catch((error) => {
       console.log(JSON.stringify(error));
     });
 };
-
-export const setStateInLeancloud = () => {
-  AV.Object.destroyAll(todoDB).then(() => {
-    console.log("destroy");
-    const stateArray = store.getState();
-    stateArray.map((todo) => {
-      console.log("-----------++++"+todo.id);
-      todoDB.save({
-        id: todo.id,
-        text: todo.text,
-        isCompleted: todo.isCompleted,
-      }).then(() => {
-        console.log(('leadcloud data update!'));
-      });
-      return todo;
-    });
-  }, (error) => {
-    // 异常处理
-    console.log(error);
+const todoId = query.count()._subscribers.length;
+export const addTodoToLeanCloud = (inputValue) => {
+  // console.log(('=====addTodoToCloud======' + 'todoID:'));
+  console.log(query.count());
+  console.log(todoId);
+  todoDB.save({
+    id: todoId,
+    text: inputValue,
+    isCompleted: false,
   });
 };
+
+// export const setStateInLeancloud = () => {
+//   const stateArray = store.getState();
+//   stateArray.map((todo) => {
+//     todoDB.save({
+//       id: todo.id,
+//       text: todo.text,
+//       isCompleted: todo.isCompleted,
+//     }).then(() => {
+//       console.log(('leadcloud data update!'));
+//     });
+//     return todo;
+//   });
+// };

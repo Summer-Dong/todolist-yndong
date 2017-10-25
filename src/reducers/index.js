@@ -26,6 +26,9 @@ const todoApp = (state = [], action) => {
     case 'DELETE_TODO':
       return state.filter(({ id }) =>
         id !== action.todo.id);
+    case 'SET_INITIAL_STATE':
+      console.log("setInitialState+++++++reducer");
+      return action.initialState;
     default:
       return state;
   }
