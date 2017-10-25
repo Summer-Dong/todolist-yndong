@@ -5,8 +5,8 @@ import { store } from '../index';
 const APP_ID = 'yL98ASNXWEJ0TFMYvxr2uBdO-gzGzoHsz';
 const APP_KEY = '0dIzh3OPc8NHdVy6bhNHI4nN';
 
-const Todo = AV.Object.extend('Todo');
-const todoCloud = new Todo();
+const TodoDB = AV.Object.extend('TodoDB');
+const todoDB = new TodoDB();
 
 AV.init({
   appId: APP_ID,
@@ -34,12 +34,12 @@ export const getStateFromLeancloud = () => {
 };
 
 export const setStateInLeancloud = () => {
-  AV.Object.destroyAll(todoCloud).then(() => {
+  AV.Object.destroyAll(todoDB).then(() => {
     console.log("destroy");
     const stateArray = store.getState();
     stateArray.map((todo) => {
       console.log("-----------++++"+todo.id);
-      todoCloud.save({
+      todoDB.save({
         id: todo.id,
         text: todo.text,
         isCompleted: todo.isCompleted,
