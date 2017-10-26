@@ -17,7 +17,6 @@ const styles = {
     border: '1px solid #bcbdbd',
     borderRadius: 10,
     padding: 15,
-    marginRight: 10,
     flex: 1,
   },
   todolist: {

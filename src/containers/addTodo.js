@@ -8,15 +8,16 @@ import { store } from '../index';
 
 const styles = {
   addTodoContainer: {
+    padding: 0,
     display: 'flex',
     justifyContent: 'space-around',
     alignItems: 'center',
   },
   inputStyle: {
-    flexGrow: 1,
     height: 50,
-    padding: 5,
+    padding: 14,
     marginRight: 5,
+    flexGrow: 1,
   },
 };
 
