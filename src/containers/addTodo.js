@@ -4,7 +4,7 @@ import { Button, Grid, Icon } from 'semantic-ui-react';
 import DeleteAllButton from '../components/deleteAllButton';
 import { addTodo } from '../actions/index';
 import { addTodoToLeanCloud } from '../apis/todos';
-
+import { store } from '../index';
 
 const styles = {
   addTodoContainer: {
@@ -22,9 +22,12 @@ const styles = {
 
 let AddTodo = ({ dispatch }) => {
   let input;
-
   const handleAddTodo = () => {
-    input.value.trim() && dispatch(addTodo(input.value)) && addTodoToLeanCloud(input.value);
+    const id = store.getState().length;
+    if (input.value.trim()) {
+      dispatch(addTodo(input.value, id));
+      addTodoToLeanCloud(input.value, id);
+    }
     input.value = '';
   };
 

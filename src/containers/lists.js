@@ -51,21 +51,23 @@ class Lists extends Component {
     ).isRequired
   }
 
-  componentWillMount() {
+  componentDidMount() {
     getStateFromLeanCloud()
-      .then((todos) => {
-        this.setState({isLoading: false, todos: todos})
+      .then((initialState) => {
+        console.log(initialState);
+        this.setState({isLoading: false})
+        this.props.setInitialState(initialState);
       });
   }
 
   renderTodoList = () => (
     <div>
       <List>
-        {this.state.todos.filter(({isCompleted}) =>
+        {this.props.todos.filter(({isCompleted}) =>
           isCompleted === false).map((todo) => {
           return (
             <div key={todo.id} style={styles.todolist}>
-              <Todo key={todo.id} {...todo}/>
+              <Todo {...todo}/>
               <Button
                 basic
                 color="green"
@@ -113,7 +115,7 @@ class Lists extends Component {
   renderCompletedTodolist = () => (
     <div>
       <List>
-        {this.state.todos.filter(({isCompleted}) =>
+        {this.props.todos.filter(({isCompleted}) =>
           isCompleted === true).map((todo) => {
           return (
             <div key={todo.id} style={styles.todolist}>
@@ -150,7 +152,7 @@ class Lists extends Component {
               <Icon name="tasks"/>
               List everything, to do everything
             </Header>
-            {this.state.todos.filter(({isCompleted}) =>
+            {this.props.todos.filter(({isCompleted}) =>
               isCompleted === false).length !== 0 ? this.renderTodoList() : this.renderTodolistEmpeyMsg()}
           </Grid.Column>
           <Grid.Column style={styles.lists}>
@@ -158,7 +160,7 @@ class Lists extends Component {
               <Icon name="tasks"/>
               Your achievement is here~
             </Header>
-            {this.state.todos.filter(({isCompleted}) =>
+            {this.props.todos.filter(({isCompleted}) =>
               isCompleted === true).length !== 0 ? this.renderCompletedTodolist() : this.renderCompletedTodolistEmpeyMsg()}
           </Grid.Column>
         </Grid.Row>
@@ -175,7 +177,7 @@ const mapDispatchToProps = (dispatch) => {
   return {
     completeTodo: (todo) => dispatch(completeTodo(todo)),
     deleteTodo: (todo) => dispatch(deleteTodo(todo)),
-    setInitialState: () => dispatch(setInitialState())
+    setInitialState: (initialState) => dispatch(setInitialState(initialState))
   }
 }
 

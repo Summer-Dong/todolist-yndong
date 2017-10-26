@@ -5,13 +5,14 @@ const todoApp = (state = [], action) => {
   switch (action.type) {
     case 'ADD_TODO':
       newStateAfterAddOne = [
-        ...action.localState,
+        ...state,
         {
           id: action.id,
           text: action.text,
           isCompleted: false,
         },
       ];
+      console.log("addTodo");
       return newStateAfterAddOne;
 
     case 'DELETE_ALL_TODOS':
@@ -27,7 +28,6 @@ const todoApp = (state = [], action) => {
       return state.filter(({ id }) =>
         id !== action.todo.id);
     case 'SET_INITIAL_STATE':
-      console.log("setInitialState+++++++reducer");
       return action.initialState;
     default:
       return state;
