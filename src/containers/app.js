@@ -4,7 +4,6 @@ import { Icon } from 'semantic-ui-react';
 import Headers from './headers';
 import AddTodo from './addTodo';
 import Lists from './lists';
-import Import from '../components/import';
 
 const styles = {
   appStyle: {
@@ -36,7 +35,6 @@ const App = () => (
     <div>
       <AddTodo />
       <Lists />
-      <Import />
     </div>
 
     <footer style={styles.footerStyle}>
