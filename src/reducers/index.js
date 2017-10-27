@@ -12,7 +12,7 @@ const todoApp = (state = [], action) => {
           isCompleted: false,
         },
       ];
-      console.log("addTodo");
+
       return newStateAfterAddOne;
 
     case 'DELETE_ALL_TODOS':

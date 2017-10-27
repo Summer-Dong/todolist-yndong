@@ -9,7 +9,6 @@ AV.init({
 });
 
 const TodoDB = AV.Object.extend('TodoDB');
-const todoDB = new TodoDB();
 
 export const getStateFromLeanCloud = () => {
   const query = new AV.Query('TodoDB');
@@ -27,9 +26,9 @@ export const getStateFromLeanCloud = () => {
 };
 
 export const addTodoToLeanCloud = (inputValue, id) => {
-  todoDB.save({
-    id,
-    text: inputValue,
-    isCompleted: false,
-  });
+  const todo = new TodoDB();
+  todo.set('id', id);
+  todo.set('text', inputValue);
+  todo.set('isCompleted', false);
+  todo.save();
 };
