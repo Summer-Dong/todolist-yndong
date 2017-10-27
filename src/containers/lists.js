@@ -5,7 +5,7 @@ import connect from "react-redux/es/connect/connect";
 import {Component} from "react/lib/ReactBaseClasses";
 import {completeTodo, deleteTodo, setInitialState} from "../actions/index";
 import {Button, Grid, Header, Icon, List} from "semantic-ui-react";
-import {getStateFromLeanCloud} from "../apis/todos";
+import {completeTodoInLeanCloud, deleteTodoInLeanCloud, getStateFromLeanCloud} from "../apis/todos";
 
 const styles = {
   container: {
@@ -33,7 +33,6 @@ class Lists extends Component {
     super(props);
     this.state = {
       isLoading: true,
-      todos: []
     }
   }
 
@@ -45,7 +44,8 @@ class Lists extends Component {
     todos: PropTypes.arrayOf(PropTypes.shape({
         id: PropTypes.number.isRequired,
         text: PropTypes.string.isRequired,
-        isCompleted: PropTypes.bool.isRequired
+        isCompleted: PropTypes.bool.isRequired,
+        objectId: PropTypes.string,
       }).isRequired
     ).isRequired
   }
@@ -53,7 +53,6 @@ class Lists extends Component {
   componentDidMount() {
     getStateFromLeanCloud()
       .then((initialState) => {
-        console.log(initialState);
         this.setState({isLoading: false})
         this.props.setInitialState(initialState);
       });
@@ -71,7 +70,10 @@ class Lists extends Component {
                 basic
                 color="green"
                 animated="vertical"
-                onClick={this.props.completeTodo.bind(this, todo)}
+                onClick={() => {
+                  this.props.completeTodo(todo.id);
+                  completeTodoInLeanCloud(todo);
+                }}
               >
                 <Button.Content hidden>Complete</Button.Content>
                 <Button.Content visible>
@@ -82,7 +84,10 @@ class Lists extends Component {
                 basic
                 color="red"
                 animated="vertical"
-                onClick={this.props.deleteTodo.bind(this, todo)}
+                onClick={() => {
+                  this.props.deleteTodo(todo);
+                  deleteTodoInLeanCloud(todo.objectId);
+                }}
               >
                 <Button.Content hidden>Delete</Button.Content>
                 <Button.Content visible>
@@ -96,7 +101,7 @@ class Lists extends Component {
     </div>
   )
 
-  renderTodolistEmpeyMsg = () => (
+  renderTodolistEmptyMsg = () => (
     <Button
       basic
       color='green'
@@ -152,7 +157,7 @@ class Lists extends Component {
               List everything, to do everything
             </Header>
             {this.props.todos.filter(({isCompleted}) =>
-              isCompleted === false).length !== 0 ? this.renderTodoList() : this.renderTodolistEmpeyMsg()}
+              isCompleted === false).length !== 0 ? this.renderTodoList() : this.renderTodolistEmptyMsg()}
           </Grid.Column>
           <Grid.Column style={styles.lists}>
             <Header as="h4" textAlign="left">

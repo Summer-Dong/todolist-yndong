@@ -10,9 +10,9 @@ export const deleteAlltodos = () => ({
   type: DELETE_ALL_TODOS,
 });
 
-export const completeTodo = todo => ({
+export const completeTodo = todoId => ({
   type: COMPLETE_TODO,
-  todo,
+  todoId,
 });
 
 export const deleteTodo = todo => ({

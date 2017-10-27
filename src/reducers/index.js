@@ -1,5 +1,4 @@
 let newStateAfterAddOne = [];
-let newStateAfterCompleteOne = [];
 
 const todoApp = (state = [], action) => {
   switch (action.type) {
@@ -19,11 +18,10 @@ const todoApp = (state = [], action) => {
       return [];
 
     case 'COMPLETE_TODO':
-      newStateAfterCompleteOne = state.map(todo =>
-        ((todo.id === action.todo.id)
+      return state.map(todo =>
+        (todo.id === action.todoId
           ? { ...todo, isCompleted: true }
           : todo));
-      return newStateAfterCompleteOne;
     case 'DELETE_TODO':
       return state.filter(({ id }) =>
         id !== action.todo.id);
