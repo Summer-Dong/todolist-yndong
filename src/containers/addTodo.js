@@ -1,9 +1,8 @@
 import * as React from 'react';
 import connect from 'react-redux/es/connect/connect';
 import { Button, Grid, Icon } from 'semantic-ui-react';
-import DeleteAllButton from '../components/deleteAllButton';
-import { addTodo } from '../actions/index';
-import { addTodoToLeanCloud } from '../apis/todos';
+import { addTodo, deleteAlltodos } from '../actions/index';
+import { addTodoToLeanCloud, deleteAllTodosInLeanCloud } from '../apis/todos';
 import { store } from '../index';
 
 const styles = {
@@ -23,6 +22,7 @@ const styles = {
 
 let AddTodo = ({ dispatch }) => {
   let input;
+
   const handleAddTodo = () => {
     const id = store.getState().length;
     if (input.value.trim()) {
@@ -62,7 +62,21 @@ let AddTodo = ({ dispatch }) => {
             </Button.Content>
           </Button>
         </Grid.Column>
-        <Grid.Column><DeleteAllButton /></Grid.Column>
+        <Grid.Column>
+          <Button
+            basic
+            color="red"
+            icon="archive"
+            label={{
+              as: 'a', basic: true, content: 'delete all', color: 'red',
+            }}
+            labelPosition="right"
+            onClick={() => {
+              deleteAllTodosInLeanCloud();
+              dispatch(deleteAlltodos());
+            }}
+          />
+        </Grid.Column>
       </Grid.Row>
     </Grid>
   );

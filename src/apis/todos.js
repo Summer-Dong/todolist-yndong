@@ -59,3 +59,13 @@ export const deleteTodoInLeanCloud = (objectIdOfDeletedTodo) => {
     console.log(`delete todo failed: ${error}`);
   });
 };
+
+export const deleteAllTodosInLeanCloud = () => {
+  const query = new AV.Query('TodoDB');
+  query.find().then(todos => AV.Object.destroyAll(todos)).then(() => {
+    console.log('delete all todos successfully!');
+  }, (error) => {
+    console.log(`delete all todos failed: ${error}`);
+  });
+};
+
