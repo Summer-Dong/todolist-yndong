@@ -34,21 +34,15 @@ export const addTodoToLeanCloud = (inputValue, id) => {
 };
 
 export const completeTodoInLeanCloud = (completedTodoFromPage) => {
-  getStateFromLeanCloud().then((todos) => {
-    for (let i = 0; i < todos.length; i++) {
-      if (todos[i].id === completedTodoFromPage.id) {
-        return todos[i];
-      }
+  getStateFromLeanCloud().then(todos => todos.forEach((todo) => {
+    if (todo.id === completedTodoFromPage.id) {
+      const completedTodo = AV.Object.createWithoutData('TodoDB', todo.objectId);
+      completedTodo.set('id', todo.id);
+      completedTodo.set('text', todo.text);
+      completedTodo.set('isCompleted', true);
+      completedTodo.save();
     }
-    return false;
-  }).then((todo) => {
-    const completedTodo = AV.Object.createWithoutData('TodoDB', todo.objectId);
-
-    completedTodo.set('id', todo.id);
-    completedTodo.set('text', todo.text);
-    completedTodo.set('isCompleted', true);
-    completedTodo.save();
-  });
+  }));
 };
 
 export const deleteTodoInLeanCloud = (objectIdOfDeletedTodo) => {
