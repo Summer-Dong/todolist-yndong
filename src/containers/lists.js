@@ -4,8 +4,8 @@ import TodoInput from "../components/todoInput";
 import connect from "react-redux/es/connect/connect";
 import {Component} from "react/lib/ReactBaseClasses";
 import {completeTodo, deleteTodo, setInitialState} from "../actions/index";
-import {Button, Grid, Header, Icon, List} from "semantic-ui-react";
-import { getStateFromLeanCloud} from "../apis/todos";
+import {Button, Dimmer, Grid, Header, Icon, List, Loader} from "semantic-ui-react";
+import {getStateFromLeanCloud} from "../apis/todos";
 import CompleteTodoButton from '../components/completeTodoButton';
 import DeleteTodoButton from '../components/deleteTodoButton';
 
@@ -100,6 +100,7 @@ class Lists extends Component {
           return (
             <div key={todo.id} style={styles.todolist}>
               <TodoInput key={todo.id} {...todo}/>
+              <DeleteTodoButton todo={todo}/>
             </div>
           )
         })
@@ -149,7 +150,11 @@ class Lists extends Component {
   }
 
   render() {
-    return (this.state.isLoading ? <p>数据加载中……</p> : this.renderData())
+    return (this.state.isLoading ?
+      <Dimmer active inverted>
+        <Loader inverted>Loading</Loader>
+      </Dimmer> :
+      this.renderData())
   }
 }
 
