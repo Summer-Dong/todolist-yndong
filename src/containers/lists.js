@@ -1,11 +1,12 @@
 import * as React from "react";
 import PropTypes from "prop-types";
-import Todo from "../components/todo";
+import TodoInput from "../components/todoInput";
 import connect from "react-redux/es/connect/connect";
 import {Component} from "react/lib/ReactBaseClasses";
 import {completeTodo, deleteTodo, setInitialState} from "../actions/index";
 import {Button, Grid, Header, Icon, List} from "semantic-ui-react";
-import {completeTodoInLeanCloud, deleteTodoInLeanCloud, getStateFromLeanCloud} from "../apis/todos";
+import { deleteTodoInLeanCloud, getStateFromLeanCloud} from "../apis/todos";
+import CompleteTodoButton from '../components/completeTodoButton';
 
 const styles = {
   container: {
@@ -65,21 +66,9 @@ class Lists extends Component {
           isCompleted === false).map((todo) => {
           return (
             <div key={todo.id} style={styles.todolist}>
-              <Todo {...todo}/>
-              <Button
-                basic
-                color="green"
-                animated="vertical"
-                onClick={() => {
-                  this.props.completeTodo(todo.id);
-                  completeTodoInLeanCloud(todo);
-                }}
-              >
-                <Button.Content hidden>Complete</Button.Content>
-                <Button.Content visible>
-                  <Icon name="check"/>
-                </Button.Content>
-              </Button>
+              <TodoInput {...todo}/>
+              <CompleteTodoButton todo={todo}/>
+
               <Button
                 basic
                 color="red"
@@ -123,7 +112,7 @@ class Lists extends Component {
           isCompleted === true).map((todo) => {
           return (
             <div key={todo.id} style={styles.todolist}>
-              <Todo key={todo.id} {...todo}/>
+              <TodoInput key={todo.id} {...todo}/>
             </div>
           )
         })
