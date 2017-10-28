@@ -1,23 +1,22 @@
 import {Button, Icon} from 'semantic-ui-react';
 import PropTypes from "prop-types";
 import * as React from 'react';
-import { connect } from 'react-redux';
-import { completeTodo } from '../actions/index';
-import { completeTodoInLeanCloud } from '../apis/todos';
+import {connect} from 'react-redux';
+import {completeTodo} from '../actions/index';
+import {completeTodoInLeanCloud} from '../apis/todos';
 
 class CompleteTodoButton extends React.Component {
-
   static defaultProps = {
     todo: {}
   }
 
   static propTypes = {
     todo: PropTypes.shape({
-        id: PropTypes.number.isRequired,
-        text: PropTypes.string.isRequired,
-        isCompleted: PropTypes.bool.isRequired,
-        objectId: PropTypes.string,
-      }).isRequired
+      id: PropTypes.number.isRequired,
+      text: PropTypes.string.isRequired,
+      isCompleted: PropTypes.bool.isRequired,
+      objectId: PropTypes.string,
+    }).isRequired
   }
 
   render() {
@@ -33,7 +32,7 @@ class CompleteTodoButton extends React.Component {
       >
         <Button.Content hidden>Complete</Button.Content>
         <Button.Content visible>
-          <Icon name="check" />
+          <Icon name="check"/>
         </Button.Content>
       </Button>
     );

@@ -47,11 +47,7 @@ export const completeTodoInLeanCloud = (completedTodoFromPage) => {
 
 export const deleteTodoInLeanCloud = (objectIdOfDeletedTodo) => {
   const deletedTodo = AV.Object.createWithoutData('TodoDB', objectIdOfDeletedTodo);
-  deletedTodo.destroy().then(() => {
-    console.log('delete todo successfully!');
-  }, (error) => {
-    console.log(`delete todo failed: ${error}`);
-  });
+  deletedTodo.destroy();
 };
 
 export const deleteAllTodosInLeanCloud = () => {

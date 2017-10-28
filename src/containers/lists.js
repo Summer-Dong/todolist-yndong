@@ -5,8 +5,9 @@ import connect from "react-redux/es/connect/connect";
 import {Component} from "react/lib/ReactBaseClasses";
 import {completeTodo, deleteTodo, setInitialState} from "../actions/index";
 import {Button, Grid, Header, Icon, List} from "semantic-ui-react";
-import { deleteTodoInLeanCloud, getStateFromLeanCloud} from "../apis/todos";
+import { getStateFromLeanCloud} from "../apis/todos";
 import CompleteTodoButton from '../components/completeTodoButton';
+import DeleteTodoButton from '../components/deleteTodoButton';
 
 const styles = {
   container: {
@@ -68,21 +69,7 @@ class Lists extends Component {
             <div key={todo.id} style={styles.todolist}>
               <TodoInput {...todo}/>
               <CompleteTodoButton todo={todo}/>
-
-              <Button
-                basic
-                color="red"
-                animated="vertical"
-                onClick={() => {
-                  this.props.deleteTodo(todo);
-                  deleteTodoInLeanCloud(todo.objectId);
-                }}
-              >
-                <Button.Content hidden>Delete</Button.Content>
-                <Button.Content visible>
-                  <Icon name="delete"/>
-                </Button.Content>
-              </Button>
+              <DeleteTodoButton todo={todo}/>
             </div>
           )
         })}
