@@ -1,10 +1,10 @@
 import * as React from "react";
 import PropTypes from "prop-types";
-import TodoInput from "../components/todoInput";
 import connect from "react-redux/es/connect/connect";
 import {Component} from "react/lib/ReactBaseClasses";
+import {Button, Dimmer, Grid, Header, Icon, Loader, Segment} from "semantic-ui-react";
 import {completeTodo, deleteTodo, setInitialState} from "../actions/index";
-import {Button, Dimmer, Grid, Header, Icon, List, Loader} from "semantic-ui-react";
+import TodoInput from "../components/todoInput";
 import {getStateFromLeanCloud} from "../apis/todos";
 import CompleteTodoButton from '../components/completeTodoButton';
 import DeleteTodoButton from '../components/deleteTodoButton';
@@ -16,8 +16,6 @@ const styles = {
     flexWrap: 'wrap',
   },
   lists: {
-    border: '1px solid #bcbdbd',
-    borderRadius: 10,
     padding: 15,
     flex: 1,
   },
@@ -61,8 +59,8 @@ class Lists extends Component {
   }
 
   renderTodoList = () => (
-    <div>
-      <List>
+    <Segment.Group>
+      <Segment>
         {this.props.todos.filter(({isCompleted}) =>
           isCompleted === false).map((todo) => {
           return (
@@ -73,8 +71,8 @@ class Lists extends Component {
             </div>
           )
         })}
-      </List>
-    </div>
+      </Segment>
+    </Segment.Group>
   )
 
   renderTodolistEmptyMsg = () => (
@@ -93,8 +91,8 @@ class Lists extends Component {
   )
 
   renderCompletedTodolist = () => (
-    <div>
-      <List>
+    <Segment.Group>
+      <Segment>
         {this.props.todos.filter(({isCompleted}) =>
           isCompleted === true).map((todo) => {
           return (
@@ -105,8 +103,8 @@ class Lists extends Component {
           )
         })
         }
-      </List>
-    </div>
+      </Segment>
+    </Segment.Group>
   )
 
   renderCompletedTodolistEmpeyMsg = () => (
@@ -152,7 +150,10 @@ class Lists extends Component {
   render() {
     return (this.state.isLoading ?
       <Dimmer active inverted>
-        <Loader inverted>Loading</Loader>
+        <Loader inverted>
+          <b>Just one second</b>
+          <p>We are fetching that content for you.</p>
+        </Loader>
       </Dimmer> :
       this.renderData())
   }
