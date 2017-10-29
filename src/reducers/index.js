@@ -26,7 +26,8 @@ const todoApp = (state = [], action) => {
       return state.filter(({ id }) =>
         id !== action.todo.id);
     case 'SET_INITIAL_STATE':
-      return action.initialState;
+      const initialState = action.initialState ? action.initialState : [];
+      return initialState;
     default:
       return state;
   }
