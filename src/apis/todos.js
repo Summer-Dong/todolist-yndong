@@ -10,6 +10,13 @@ AV.init({
 
 const TodoDB = AV.Object.extend('TodoDB');
 
+let initialId = 0;
+
+export const getIdForNewTodo = () => {
+  initialId += 1;
+  return initialId - 1;
+};
+
 export const getStateFromLeanCloud = () => {
   const query = new AV.Query('TodoDB');
   query.include('id');
