@@ -12,7 +12,7 @@ class CompleteTodoButton extends React.Component {
 
   static propTypes = {
     todo: PropTypes.shape({
-      id: PropTypes.number.isRequired,
+      id: PropTypes.string.isRequired,
       text: PropTypes.string.isRequired,
       isCompleted: PropTypes.bool.isRequired,
       objectId: PropTypes.string,
