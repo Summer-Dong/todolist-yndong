@@ -1,9 +1,10 @@
 import { ADD_TODO, DELETE_ALL_TODOS, COMPLETE_TODO, DELETE_TODO, SET_INITIAL_STATE } from '../constants';
 
-export const addTodo = (text, id) => ({
+export const addTodo = (text, id, objectId) => ({
   type: ADD_TODO,
   id,
   text,
+  objectId,
 });
 
 export const deleteAlltodos = () => ({

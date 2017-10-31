@@ -31,7 +31,7 @@ export const getStateFromLeanCloud = () => {
       { ...todo.attributes, objectId: todo.id })))
     .catch((error) => {
       console.log(error);
-      // return [];
+      return [];
     });
 };
 
@@ -40,7 +40,7 @@ export const addTodoToLeanCloud = (inputValue, id) => {
   todo.set('id', id);
   todo.set('text', inputValue);
   todo.set('isCompleted', false);
-  todo.save();
+  return todo.save();
 };
 
 export const completeTodoInLeanCloud = (completedTodoFromPage) => {

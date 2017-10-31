@@ -2,7 +2,7 @@ import * as React from 'react';
 import connect from 'react-redux/es/connect/connect';
 import { Button, Grid, Icon } from 'semantic-ui-react';
 import { addTodo, deleteAlltodos } from '../actions/index';
-import {addTodoToLeanCloud, deleteAllTodosInLeanCloud, getIdForNewTodo} from '../apis/todos';
+import { addTodoToLeanCloud, deleteAllTodosInLeanCloud, getIdForNewTodo } from '../apis/todos';
 
 const styles = {
   addTodoContainer: {
@@ -23,10 +23,11 @@ let AddTodo = ({ dispatch }) => {
   let input;
 
   const handleAddTodo = () => {
-    if (input.value.trim()) {
+    const newText = input.value;
+    if (newText.trim()) {
       const id = getIdForNewTodo();
-      dispatch(addTodo(input.value, id));
-      addTodoToLeanCloud(input.value, id);
+      addTodoToLeanCloud(newText, id)
+        .then(newTodo => dispatch(addTodo(newText, id, newTodo.id)));
     }
     input.value = '';
   };

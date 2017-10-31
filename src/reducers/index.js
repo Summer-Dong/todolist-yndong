@@ -9,6 +9,7 @@ const todoApp = (state = [], action) => {
           id: action.id,
           text: action.text,
           isCompleted: false,
+          objectId: action.objectId,
         },
       ];
 
